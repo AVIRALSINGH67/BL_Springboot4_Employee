@@ -1,5 +1,6 @@
 package com.example.Employee_Payroll.service;
 
+import com.example.Employee_Payroll.dto.EmployeeDTO;
 import com.example.Employee_Payroll.model.Employee;
 import com.example.Employee_Payroll.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,13 @@ public class EmployeeService {
         return employeeRepository.findById(id).orElse(null);
     }
 
-    public Employee addEmployee(Employee employee) {
+    public Employee addEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee(employeeDTO);
         return employeeRepository.save(employee);
     }
 
-    public Employee updateEmployee(int id, Employee employee) {
+    public Employee updateEmployee(int id, EmployeeDTO employeeDTO) {
+        Employee employee=new Employee(employeeDTO);
         employee.setId(id);
         return employeeRepository.save(employee);
     }
